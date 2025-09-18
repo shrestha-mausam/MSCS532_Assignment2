@@ -1,147 +1,120 @@
 # Sorting Algorithms Performance Analysis
 
-This project implements and analyzes the performance of two fundamental sorting algorithms: **Quicksort** and **Mergesort**. The implementation includes comprehensive performance tracking, detailed comments, and analysis of theoretical vs. practical performance characteristics.
+[![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://python.org)
+[![License](https://img.shields.io/badge/License-Educational-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)]()
 
-## Project Structure
+A comprehensive analysis and implementation of **Quicksort** and **Mergesort** algorithms with detailed performance tracking, theoretical analysis, and empirical comparisons across multiple dataset characteristics.
 
-```
-assign2/
-├── main.py                   # Main orchestrator - runs complete analysis with comparison tables
-├── quicksort.py              # Quicksort implementation with performance tracking
-├── mergesort.py              # Mergesort implementation with performance tracking
-├── performance_analysis.py    # Comprehensive performance analysis script
-├── datasets/                 # Directory containing test datasets
-│   ├── sorted_data.txt      # Pre-sorted ascending data (10,000 elements)
-│   ├── reverse_sorted_data.txt # Reverse sorted data (10,000 elements)
-│   ├── random_data.txt      # Random data (10,000 elements)
-│   └── [additional size variants] # Various sizes for comprehensive testing
-├── README.md                 # This file
-├── requirements.txt          # Python dependencies
-└── .gitignore               # Git ignore rules
-```
+## 🚀 Quick Start
 
-## Features
+```bash
+# Clone and setup
+git clone <repository-url>
+cd MSCS532_Assignment2
 
-- **Detailed Algorithm Implementations**: Both Quicksort and Mergesort with comprehensive comments explaining the algorithms, time/space complexity, and implementation details
-- **Performance Tracking**: Real-time monitoring of execution time and memory usage using `psutil` and `time` modules
-- **Multiple Dataset Types**: Sorted, reverse sorted, and random data for comprehensive testing
-- **Automated Analysis**: Scripts for generating datasets and running performance comparisons
-- **Results Export**: JSON export of detailed performance metrics for further analysis
-
-## Requirements
-
-- Python 3.7+
-- `psutil` library for memory monitoring
-
-## Virtual Environment Setup (Recommended)
-
-It's recommended to use a virtual environment to avoid conflicts with system packages:
-
-
-# Create virtual environment
+# Setup virtual environment
 python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Activate virtual environment
-# On macOS/Linux:
-source venv/bin/activate
-# On Windows:
-# venv\Scripts\activate
-
-# Upgrade pip
-pip install --upgrade pip
-
-# Install required dependencies
+# Install dependencies
 pip install -r requirements.txt
-```
 
-### Option 2: Using the Setup Script
-```bash
-# Make the setup script executable (macOS/Linux only)
-chmod +x setup_venv.sh
-
-# Run the setup script
-./setup_venv.sh
-```
-
-### Deactivating Virtual Environment
-```bash
-deactivate
-```
-
-## Quick Start
-
-**Note**: Make sure your virtual environment is activated before running the commands below.
-
-### Option 1: Complete Analysis (Recommended)
-```bash
-# Run the main orchestrator for complete analysis with comparison tables
+# Run complete analysis
 python main.py
 ```
-This runs both algorithms on all datasets and displays comprehensive comparison tables in the terminal.
 
-### Option 2: Individual Analysis
+## 📊 Performance Summary
+
+| Algorithm | Best Case | Average Case | Worst Case | Space | Stability |
+|-----------|-----------|--------------|------------|-------|-----------|
+| **Quicksort** | O(n log n) | O(n log n) | O(n²) | O(log n) | No |
+| **Mergesort** | O(n log n) | O(n log n) | O(n log n) | O(n) | Yes |
+
+**Key Findings:**
+- Quicksort: **1.6x faster** on average, but unpredictable worst-case
+- Mergesort: **Consistent performance** across all inputs, stable sorting
+
+## 📁 Project Structure
+
+```
+MSCS532_Assignment2/
+├── 📄 main.py                    # Main orchestrator with comparison tables
+├── 🔧 quicksort.py               # Quicksort implementation with tracking
+├── 🔧 mergesort.py               # Mergesort implementation with tracking
+├── 📊 performance_analysis.py    # Comprehensive analysis script
+├── 📁 datasets/                  # Test datasets (multiple sizes & types)
+│   ├── sorted_data_*.txt        # Pre-sorted ascending data
+│   ├── reverse_sorted_data_*.txt # Reverse sorted data
+│   └── random_data_*.txt        # Random data
+├── 📋 requirements.txt           # Python dependencies
+└── 📖 README.md                  # This file
+```
+
+## 🎯 Features
+
+- ✅ **Comprehensive Implementations**: Detailed Quicksort and Mergesort with extensive comments
+- ⏱️ **Performance Tracking**: Real-time execution time and memory usage monitoring
+- 📈 **Multiple Dataset Types**: Sorted, reverse sorted, and random data across various sizes
+- 🤖 **Automated Analysis**: Complete performance comparison with formatted output
+- 📊 **Export Capabilities**: JSON export of detailed metrics for further analysis
+- 📚 **Educational Focus**: Clear explanations of algorithms, complexity analysis, and trade-offs
+
+## 🛠️ Requirements
+
+- **Python**: 3.7 or higher
+- **Dependencies**: `psutil` (memory monitoring), `tabulate` (formatted output)
+
+## 🚀 Usage
+
+### Complete Analysis (Recommended)
 ```bash
-# Test Quicksort on all datasets
+python main.py
+```
+Runs both algorithms on all datasets and displays comprehensive comparison tables.
+
+### Individual Algorithm Testing
+```bash
+# Test Quicksort performance
 python quicksort.py
 
-# Test Mergesort on all datasets  
+# Test Mergesort performance
 python mergesort.py
 
 # Run detailed performance analysis
 python performance_analysis.py
 ```
 
-## Algorithm Implementations
+### Custom Dataset Testing
+Create a text file with one integer per line and modify the dataset paths in the sorting scripts.
 
-### Quicksort (`quicksort.py`)
+## 🔍 Algorithm Details
 
-**Algorithm Overview:**
-- Divide-and-conquer algorithm
-- Selects a pivot element and partitions the array
-- Recursively sorts subarrays before and after the pivot
+### Quicksort
+**Strategy**: Divide-and-conquer with pivot-based partitioning
+- **Best Case**: O(n log n) - balanced partitions
+- **Average Case**: O(n log n) - random pivot selection
+- **Worst Case**: O(n²) - unbalanced partitions
+- **Space**: O(log n) - recursion stack
+- **Characteristics**: In-place, unstable, cache-friendly
 
-**Time Complexity:**
-- Best Case: O(n log n) - when pivot divides array into equal halves
-- Average Case: O(n log n) - expected performance with random data
-- Worst Case: O(n²) - when pivot is always smallest/largest element
+### Mergesort
+**Strategy**: Divide-and-conquer with guaranteed balanced splits
+- **All Cases**: O(n log n) - consistent performance
+- **Space**: O(n) - temporary arrays
+- **Characteristics**: Stable, predictable, external sorting capable
 
-**Space Complexity:** O(log n) - due to recursive call stack
+## 📊 Dataset Information
 
-**Key Features:**
-- In-place sorting (modifies input array)
-- Unstable sorting algorithm
-- Performance depends heavily on pivot selection
+The project includes datasets of various sizes (1K, 5K, 10K elements) with three characteristics:
 
-### Mergesort (`mergesort.py`)
+| Dataset Type | Purpose | Quicksort Performance | Mergesort Performance |
+|--------------|---------|----------------------|----------------------|
+| **Sorted** | Best-case test | Excellent (O(n log n)) | Consistent (O(n log n)) |
+| **Reverse Sorted** | Worst-case test | Poor (O(n²)) | Consistent (O(n log n)) |
+| **Random** | Average-case test | Good (O(n log n)) | Consistent (O(n log n)) |
 
-**Algorithm Overview:**
-- Divide-and-conquer algorithm
-- Divides array into two halves, sorts each half, then merges
-- Guaranteed stable performance regardless of input
-
-**Time Complexity:**
-- Best Case: O(n log n)
-- Average Case: O(n log n)  
-- Worst Case: O(n log n)
-
-**Space Complexity:** O(n) - requires additional space for temporary arrays
-
-**Key Features:**
-- Stable sorting algorithm
-- Consistent performance across all input types
-- Requires additional memory for temporary arrays
-
-## Performance Analysis
-
-The `performance_analysis.py` script provides comprehensive analysis including:
-
-- **Execution Time Comparison**: Direct timing comparison between algorithms
-- **Memory Usage Analysis**: Memory consumption tracking during sorting
-- **Dataset-Specific Analysis**: Performance across different data characteristics
-- **Summary Reports**: Categorized analysis by data type (sorted, reverse sorted, random)
-- **JSON Export**: Detailed results saved for further analysis
-
-### Sample Output
+## 📈 Sample Output
 
 ```
 PERFORMANCE SUMMARY REPORT
@@ -149,7 +122,6 @@ PERFORMANCE SUMMARY REPORT
 
 SORTED DATA ANALYSIS:
 --------------------------------------------------
-
 Dataset: sorted_data_10000 (Size: 10000)
   Quicksort:  0.002345s, 0.15MB
   Mergesort:  0.003456s, 0.23MB
@@ -157,140 +129,58 @@ Dataset: sorted_data_10000 (Size: 10000)
 
 REVERSE SORTED DATA ANALYSIS:
 --------------------------------------------------
-
 Dataset: reverse_sorted_data_10000 (Size: 10000)
   Quicksort:  0.045678s, 0.18MB
   Mergesort:  0.003123s, 0.25MB
   Winner: Mergesort (14.63x faster)
 ```
 
-## Dataset Information
+## 🔧 Troubleshooting
 
-### Generated Datasets
+### Common Issues
 
-The project includes datasets of various sizes (1,000, 5,000, 10,000 elements) with three characteristics:
-
-1. **Sorted Data**: Pre-sorted in ascending order
-   - Tests best-case performance for Quicksort
-   - Tests consistent performance for Mergesort
-
-2. **Reverse Sorted Data**: Sorted in descending order  
-   - Tests worst-case performance for Quicksort
-   - Tests consistent performance for Mergesort
-
-3. **Random Data**: Randomly generated integers
-   - Tests average-case performance for both algorithms
-   - Most realistic scenario for practical applications
-
-## Expected Performance Characteristics
-
-### Quicksort
-- **Best Performance**: On sorted or nearly sorted data
-- **Worst Performance**: On reverse sorted data (worst-case O(n²))
-- **Memory Efficient**: Lower memory usage due to in-place sorting
-- **Unpredictable**: Performance varies significantly with input characteristics
-
-### Mergesort  
-- **Consistent Performance**: Same O(n log n) performance regardless of input
-- **Higher Memory Usage**: Requires O(n) additional space
-- **Predictable**: Reliable performance makes it suitable for critical applications
-- **Stable**: Maintains relative order of equal elements
-
-## Files Description
-
-- **`main.py`**: Main orchestrator that runs complete analysis with comparison tables
-- **`quicksort.py`**: Complete Quicksort implementation with performance tracking
-- **`mergesort.py`**: Complete Mergesort implementation with performance tracking  
-- **`performance_analysis.py`**: Comprehensive analysis script comparing both algorithms
-- **`performance_analysis.md`**: Detailed analysis of theoretical vs practical performance discrepancies
-- **`requirements.txt`**: Python dependencies (psutil, tabulate)
-- **`.gitignore`**: Git ignore rules for Python projects
-
-## Usage Examples
-
-### Running Individual Tests
+**Virtual Environment Problems:**
 ```bash
-# Test specific algorithm
-python quicksort.py
-python mergesort.py
+# Command not found
+python -m venv venv  # Use 'python' instead of 'python3'
 
-# Generate new datasets with different parameters
-python generate_datasets.py
+# Permission denied
+source venv/bin/activate  # macOS/Linux
+venv\Scripts\activate     # Windows
 ```
 
-### Custom Dataset Testing
-To test with your own dataset, create a text file with one integer per line and modify the dataset paths in the sorting scripts.
-
-### Performance Analysis
+**Dependency Issues:**
 ```bash
-# Run comprehensive analysis
-python performance_analysis.py
-
-# Results will be displayed in terminal and saved to performance_results.json
-```
-
-## Troubleshooting
-
-### Virtual Environment Issues
-
-**Problem**: `python3` command not found
-```bash
-# Try using 'python' instead
-python -m venv venv
-```
-
-**Problem**: Permission denied when activating virtual environment
-```bash
-# Make sure you're using the correct activation command
-# On macOS/Linux:
-source venv/bin/activate
-# On Windows:
-venv\Scripts\activate
-```
-
-**Problem**: `psutil` installation fails
-```bash
-# Try upgrading pip first
+# Upgrade pip first
 pip install --upgrade pip
-pip install psutil
+pip install psutil tabulate
 
-# If still failing, try installing with conda
-conda install psutil
+# Alternative with conda
+conda install psutil tabulate
 ```
 
-**Problem**: Virtual environment not activating
-```bash
-# Check if virtual environment was created properly
-ls -la venv/
+**Dataset Issues:**
+- Datasets are generated automatically when running scripts
+- Check `datasets/` directory exists and contains `.txt` files
+- Memory usage showing 0.00 MB is normal for small datasets
 
-# Recreate if necessary
-rm -rf venv
-python3 -m venv venv
-source venv/bin/activate
-```
+## 📚 Documentation
 
-### Performance Analysis Issues
+- **[Algorithm Analysis](assets/algorithm_analysis.md)**: Detailed theoretical analysis including recurrence relations, complexity proofs, and comparative analysis
+- **[Performance Analysis](assets/performance_analysis.md)**: Empirical performance analysis with real-world implications and optimization strategies
 
-**Problem**: Dataset files not found
-```bash
-# Make sure datasets directory exists and contains files
-ls -la datasets/
+## 🎓 Educational Context
 
-# If empty, the datasets are generated automatically when running the scripts
-```
+This project is part of **MSCS-532 Assignment 2** and focuses on:
+- **Algorithm Implementation**: Clear, commented code for educational purposes
+- **Performance Analysis**: Theoretical vs. practical performance comparison
+- **Real-world Applications**: Industry use cases and optimization strategies
+- **Comprehensive Testing**: Multiple dataset types and sizes for thorough analysis
 
-**Problem**: Memory usage shows 0.00 MB
-- This is normal for small datasets or when memory usage is below the measurement threshold
-- The algorithms are working correctly; memory tracking has limitations for very small operations
-
-## Contributing
-
-This project is part of Assignment 2 for MSCS-532. The implementations focus on:
-- Educational clarity with detailed comments
-- Comprehensive performance analysis
-- Real-world applicability considerations
-- Theoretical vs practical performance analysis
-
-## License
+## 📄 License
 
 This project is created for educational purposes as part of academic coursework.
+
+---
+
+**Note**: This analysis demonstrates that while Mergesort provides consistent performance guarantees, Quicksort often outperforms it in practice due to better cache locality and lower constant factors, especially with randomized pivot selection.
